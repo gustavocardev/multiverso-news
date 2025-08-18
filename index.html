@@ -19,8 +19,12 @@
     <div id="conteudo-noticia2">
     </div>
 
+    <div class="rectangle-1"></div>
+    
+
+
     <script>
-        // Script para carregar noticia1.html
+     
         fetch('noticia1.html')
             .then(response => {
                 if (!response.ok) {
@@ -38,24 +42,24 @@
     </script>
     
     <script> 
-        // Script para carregar noticia2.html
+       
         fetch('noticia2.html')
-            .then(response => { // Variável corrigida de 'responte' para 'response'
+            .then(response => { 
                 if (!response.ok) {
                     throw new Error('Erro ao carregar o arquivo noticia2.');
                 }
                 return response.text();
             })
             .then(html => {
-                // Pega o elemento com o id 'conteudo-noticia2'
+               
                 const container = document.getElementById('conteudo-noticia2');
-                // Insere o HTML do arquivo buscado dentro dele
+               
                 container.innerHTML = html;
             })
             .catch(error => {
                  console.error('Houve um problema com a operação de fetch para noticia2:', error);
             });
     </script>
-
+     
 </body>
 </html>
