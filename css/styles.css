@@ -1,0 +1,31 @@
+header {
+    text-align: center;
+    font-size: 400%;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-block-start:5em;
+    margin-block-end: 5em;
+    font-size: 200%;
+    gap: 20px;
+}
+
+
+img {   
+    width: 800px;
+    height: 300px;
+    display: block;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+
+}
+
+p {
+    text-align: center;
+}
