@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
 body {
     background: #080054;
     background: linear-gradient(90deg, rgba(8, 0, 84, 1) 0%, rgba(29, 78, 253, 1) 50%, rgba(8, 0, 84, 1) 100%);
@@ -7,6 +14,7 @@ header {
     background-color: #000000;
     text-align: center;
     font-size: 400%;
+    padding: 16px 32px;
 }
 
 nav ul {
@@ -19,6 +27,11 @@ nav ul {
     margin-block-end: 1em;
     font-size: 200%;
     gap: 180px;
+}
+
+button{
+    margin-block-start: 1em;
+    margin-block-end: 3em;
 }
 
 li a {
@@ -36,19 +49,19 @@ img {
 h1 {
     text-align: center;
     font-size: 300%;
+    font-family: 'Roboto', sans-serif;
 }
 
 p {
     text-align: center;
     color: #ffffff;
- 
+    font-family: 'Georgia', serif;
     margin: 20px 0; /* Adiciona um espaçamento acima e abaixo da linha */
 }
 
 article {
-    max-width: 800px;
+    max-width: 950px;
     margin: auto;
-    padding: 20px;
-    background-color: #070707;
-    border-radius: 0px;
+    padding: 80px;
+    background-color: #000000;
 }
