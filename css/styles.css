@@ -21,7 +21,7 @@ header {
 .container-categorias{
     display: flex;
     justify-content: center;
-    background: #080054;
+    background: #000000;
     background: linear-gradient(90deg, rgba(8, 0, 84, 1) 0%, rgba(29, 78, 253, 1) 50%, rgba(8, 0, 84, 1) 100%);
 }
 
@@ -38,8 +38,21 @@ header {
 .botao-categorias {
     display: flex;
     gap: 8px;
-    border:none;
-    border-radius:24px;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    color:var(--white-color);
+    background:none;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.botao-categorias:hover{
+    background: #080054;
+}
+
+.botao-categorias.ativo {
+    background: #0000f3;
 }
 
 img {
