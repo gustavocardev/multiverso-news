@@ -31,24 +31,26 @@ header {
     align-items: center;
     gap:16px;
     width:100%;
-    max-width:1200px;
+    max-width:1700px;
     padding: 8px 32px;
+    background: #000000;
+    background: linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, rgba(8, 0, 84, 1) 23%, rgba(8, 0, 84, 1) 74%, rgba(0, 0, 0, 1) 92%);
 }
 
 .botao-categorias {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     color:var(--white-color);
     background:none;
-    padding: 12px 24px;
+    padding: 12px 32px;
     cursor: pointer;
 }
 
 .botao-categorias:hover{
-    background: #080054;
+    background: #1761ff;
 }
 
 .botao-categorias.ativo {
@@ -79,5 +81,11 @@ article {
     max-width: 950px;
     margin: auto;
     padding: 80px;
+    background-color: #000000;
+}
+
+footer {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 32px;
     background-color: #000000;
 }
