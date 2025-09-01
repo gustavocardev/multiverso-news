@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiverso-News</title>
-
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Logic Basics - gustavo.cardosomachado01@gmail.com" />
     <meta property="og:title" content="Multiverso-News">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -20,20 +19,22 @@
 
     <div class="container-categorias">
         <nav>
+            <button class="botao-categorias ativo" data-categoria="todas">
+                Todas
+            </button>
             <button class="botao-categorias" data-categoria="mangas">
                 Mangás 
             </button>
-
             <button class="botao-categorias" data-categoria="quadrinhos">
                 Quadinhos
             </button>
-            
-        </nav>         
+        </nav>       
     </div> 
 
-    <main>          
+    <main>        
         <div id="conteudo-principal">
-            </div>
+            <p>Carregando notícias...</p>
+        </div>
     </main>
     
     <footer>
@@ -41,50 +42,53 @@
     </footer>
 
     <script>
-        // Obtém todos os botões de categoria
-        const botoesCategorias = document.querySelectorAll('.botao-categorias');
-        const containerPrincipal = document.getElementById('conteudo-principal');
+        document.addEventListener('DOMContentLoaded', () => {
+            const botoesCategorias = document.querySelectorAll('.botao-categorias');
+            const containerPrincipal = document.getElementById('conteudo-principal');
 
-        // Função para carregar conteúdo dinâmico de um arquivo HTML
-        function carregarConteudo(categoria) {
-            const url = `${categoria}.html`;
-            
-            // Exibe uma mensagem de carregamento
-            containerPrincipal.innerHTML = '<p>Carregando...</p>';
+            // Função para carregar conteúdo dinâmico de um arquivo HTML
+            function carregarConteudo(categoria) {
+                const url = `${categoria}.html`;
+                
+                // Exibe uma mensagem de carregamento
+                containerPrincipal.innerHTML = '<p>Carregando...</p>';
 
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Erro ao carregar o arquivo: ${url}`);
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    // Insere o HTML recebido no contêiner principal
-                    containerPrincipal.innerHTML = html;
-                })
-                .catch(error => {
-                    console.error(error);
-                    containerPrincipal.innerHTML = `<p>Ocorreu um erro ao carregar o conteúdo da categoria "${categoria}".</p>`;
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Erro ao carregar o arquivo: ${url}`);
+                        }
+                        return response.text();
+                    })
+                    .then(html => {
+                        // Insere o HTML recebido no contêiner principal
+                        containerPrincipal.innerHTML = html;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        containerPrincipal.innerHTML = `<p>Ocorreu um erro ao carregar o conteúdo. Verifique o console para mais detalhes.</p>`;
+                    });
+            }
+
+            // Adiciona um "ouvinte de evento" para cada botão
+            botoesCategorias.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    const categoria = botao.dataset.categoria; 
+
+                    // Remove a classe 'ativo' de todos e adiciona apenas no clicado
+                    botoesCategorias.forEach(b => b.classList.remove('ativo'));
+                    botao.classList.add('ativo');
+
+                    // Chama a função para carregar o conteúdo
+                    carregarConteudo(categoria);
                 });
-        }
-
-        // Adiciona um "ouvinte de evento" para cada botão
-        botoesCategorias.forEach(botao => {
-            botao.addEventListener('click', () => {
-                const categoria = botao.dataset.categoria; 
-
-                // Adiciona a classe 'ativo' no botão clicado para estilização
-                botoesCategorias.forEach(b => b.classList.remove('ativo'));
-                botao.classList.add('ativo');
-
-                // Chama a função para carregar o conteúdo
-                carregarConteudo(categoria);
             });
-        });
 
-        // Opcional: Carregar um conteúdo inicial quando a página é aberta
-        // carregarConteudo('noticia1'); 
+            // --- PONTO CHAVE DA CORREÇÃO ---
+            // Carrega o conteúdo "todas" assim que a página é aberta
+            carregarConteudo('todas');
+        });
     </script>
+
 </body>
 </html>
