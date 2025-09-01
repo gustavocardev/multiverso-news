@@ -9,7 +9,6 @@
     <meta name="author" content="Logic Basics - gustavo.cardosomachado01@gmail.com" />
     <meta property="og:title" content="Multiverso-News">
     <link rel="stylesheet" href="/css/styles.css">
- 
 </head>
 <body>
 
@@ -19,67 +18,73 @@
         </div>
     </header>
 
- <div class="container-categorias">
+    <div class="container-categorias">
         <nav>
-            <button class="botao-categorias">
-                Destaque 
+            <button class="botao-categorias" data-categoria="mangas">
+                Mangás 
             </button>
 
-            <button class="botao-categorias">
+            <button class="botao-categorias" data-categoria="quadrinhos">
                 Quadinhos
             </button>
-         </nav>           
- </div> 
+            
+        </nav>         
+    </div> 
 
     <main>          
-        <div id="conteudo-noticia1"></div>
-        <div id="conteudo-noticia2"> </div>
+        <div id="conteudo-principal">
+            </div>
     </main>
     
-    
-    
+    <footer>
+        <p> 2025 - Multiverso-News - Todos os direitos reservados</p>
+    </footer>
 
     <script>
-     
-        fetch('noticia1.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar o arquivo noticia1.');
-                }
-                return response.text();
-            })
-            .then(html => {
-                const container = document.getElementById('conteudo-noticia1');
-                container.innerHTML = html;
-            })
-            .catch(error => {
-                console.error('Houve um problema com a operação de fetch para noticia1:', error);
-            });
-    </script>
-    
-    <script> 
-       
-        fetch('noticia2.html')
-            .then(response => { 
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar o arquivo noticia2.');
-                }
-                return response.text();
-            })
-            .then(html => {
-               
-                const container = document.getElementById('conteudo-noticia2');
-               
-                container.innerHTML = html;
-            })
-            .catch(error => {
-                 console.error('Houve um problema com a operação de fetch para noticia2:', error);
-            });
-    </script>
+        // Obtém todos os botões de categoria
+        const botoesCategorias = document.querySelectorAll('.botao-categorias');
+        const containerPrincipal = document.getElementById('conteudo-principal');
 
-<footer>
-    <p> 2025 - Multiverso-News - Todos os direitos reservados</p>
-</footer>
-     
+        // Função para carregar conteúdo dinâmico de um arquivo HTML
+        function carregarConteudo(categoria) {
+            const url = `${categoria}.html`;
+            
+            // Exibe uma mensagem de carregamento
+            containerPrincipal.innerHTML = '<p>Carregando...</p>';
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro ao carregar o arquivo: ${url}`);
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    // Insere o HTML recebido no contêiner principal
+                    containerPrincipal.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error(error);
+                    containerPrincipal.innerHTML = `<p>Ocorreu um erro ao carregar o conteúdo da categoria "${categoria}".</p>`;
+                });
+        }
+
+        // Adiciona um "ouvinte de evento" para cada botão
+        botoesCategorias.forEach(botao => {
+            botao.addEventListener('click', () => {
+                const categoria = botao.dataset.categoria; 
+
+                // Adiciona a classe 'ativo' no botão clicado para estilização
+                botoesCategorias.forEach(b => b.classList.remove('ativo'));
+                botao.classList.add('ativo');
+
+                // Chama a função para carregar o conteúdo
+                carregarConteudo(categoria);
+            });
+        });
+
+        // Opcional: Carregar um conteúdo inicial quando a página é aberta
+        // carregarConteudo('noticia1'); 
+    </script>
 </body>
 </html>
